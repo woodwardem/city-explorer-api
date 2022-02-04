@@ -40,7 +40,7 @@ function Forecast(day) {
     this.description = day.weather.description
 }
 
-
+app.use('*', (request, response) => response.status(404).send('that end point does not exist'));
 
 
 app.listen(PORT, () => console.log(`listening on port ${PORT}`));
