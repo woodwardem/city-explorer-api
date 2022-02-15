@@ -26,12 +26,12 @@ app.get('/weather', async (request, response) => {
 const url = `https://api.weatherbit.io/v2.0/forecast/daily?key=${process.env.WEATHER_API_KEY}&days=7lat=${lat}&lon=${lon}`;
 const weatherData =  await axios.get(url);
 console.log(url);
-console.log(weatherData);
+console.log(weatherData.data.data);
 console.log("lat", "lon", lat, lon);
 
 try{
-console weatherArray = weatherData.data.data
-response.status(200).send(weatherData.data.data);
+const weatherArray = weatherData.data.data.map(day => new Forecast(day));
+response.status(200).send(weatherArray);
 
 
 } catch{error} {
