@@ -23,7 +23,7 @@ app.get('/weather', async (request, response) => {
     let searchQuery = request.query.searchQuery;
 
 // const city = weather.find(cityObj => cityObj.city_name.toLowerCase() === searchQuery.toLowerCase());
-const url = `https://api.weatherbit.io/v2.0/forecast/daily?key=${process.env.WEATHER_API_KEY}&days=7lat=${lat}&lon=${lon}`;
+const url = `https://api.weatherbit.io/v2.0/forecast/daily?key=${process.env.WEATHER_API_KEY}&days=7&lat=${lat}&lon=${lon}`;
 const weatherData =  await axios.get(url);
 console.log(url);
 console.log(weatherData.data.data);
