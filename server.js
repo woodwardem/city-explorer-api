@@ -16,15 +16,18 @@ app.get('/', (request, response) => {
     response.send('hello from home route')
 });
 
-app.get('/weather', (request, response) => {
+app.get('/weather', async(request, response) => {
     let lat = request.query.lat;
     let lon = request.query.lon;
     let searchQuery = request.query.searchQuery;
 
-const city = weather.find(cityObj => cityObj.city_name.toLowerCase() === searchQuery.toLowerCase());
+
 
 try{
-const weatherArray = city.data.map(day => new Forecast(day));
+    const weatherData = await axios.get(url);
+    console.log(weatherData.data.data)
+    const weatherArray = weatherData.data.data.map(day => new Forecast(day));
+const weatherData = city.data.map(day => new Forecast(day));
 response.status(200).send(weatherArray);
 
 
