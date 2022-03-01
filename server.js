@@ -4,10 +4,10 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const { request, response } = require('express');
-const weather = require('./data/weather.json');
+//const weather = require('./data/weather.json');
 const app = express();
 app.use(cors());
-
+const weather = require('./modules/weather.js');
 
 //set the port variable
 const PORT = process.env.PORT || 3002;
@@ -15,6 +15,18 @@ const PORT = process.env.PORT || 3002;
 app.get('/', (request, response) => {
     response.send('hello from home route')
 });
+app.get('./weather', weatherHandler);
+async function weatherHandler(request, response) {
+    let lat = request.query.lat;
+    let lon = request.query.lon;
+    console.log('lat', 'lon', lat, lon);
+     await weather(lat, lon)
+    .then(summaries => response.send(summaries))
+    .catch(error => {
+        console.error(error);
+        response.status(500).send('Sorry something went wrong');
+    })
+}
 
 app.get('/weather', async (request, response) => {
     let lat = request.query.lat;
