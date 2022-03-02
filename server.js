@@ -8,7 +8,7 @@ const { request, response } = require('express');
 const app = express();
 app.use(cors());
 const weather = require('./modules/weather.js');
-
+const axios = require('axios');
 //set the port variable
 const PORT = process.env.PORT || 3002;
 
