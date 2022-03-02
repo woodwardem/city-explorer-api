@@ -43,7 +43,7 @@ app.get('/weather', async (request, response) => {
         response.status(200).send(weatherArray);
 
 
-    } catch { error } {
+    } catch ( error ) {
         console.log(error);
         response.status(500).send('city not found');
         //response.send('city not found');
