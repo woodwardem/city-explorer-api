@@ -8,7 +8,7 @@ function getWeather(lat, lon) {
     const url = `https://api.weatherbit.io/v2.0/forecast/daily?key=${process.env.WEATHER_API_KEY}&days=7&lat=${lat}&lon=${lon}`;
    
    
-   
+   var URL = require('url').URL;
    
     if (cache[key] && (Date.now() - cache[key].timestamp < 50000)) {
         console.log('Cache hit');
@@ -38,7 +38,7 @@ return Promise.resolve(weatherArray);
     } catch ( error ) {
         console.log(error);
         response.status(500).send('city not found');
-        //response.send('city not found');
+        
         return Promise.reject(error);
     }
 
