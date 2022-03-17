@@ -8,7 +8,7 @@ function getWeather(lat, lon) {
     const url = `https://api.weatherbit.io/v2.0/forecast/daily?key=${process.env.WEATHER_API_KEY}&days=7&lat=${lat}&lon=${lon}`;
    
    
-   var URL = require('url').URL;
+   //var URL = require('url').URL;
    
     if (cache[key] && (Date.now() - cache[key].timestamp < 50000)) {
         console.log('Cache hit');
@@ -27,8 +27,9 @@ function getWeather(lat, lon) {
 
 
 
+   function parseWeather(weatherData) {
     try {
-        const weatherData =  axios.get(url);
+        //const weatherData =  axios.get(url);
         console.log(weatherData.data.data)
         const weatherArray = weatherData.data.data.map(day => new Forecast(day));
         //const weatherData = city.data.map(day => new Forecast(day));
@@ -41,7 +42,7 @@ return Promise.resolve(weatherArray);
         
         return Promise.reject(error);
     }
-
+   };
 
 
 
